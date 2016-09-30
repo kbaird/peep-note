@@ -1,15 +1,47 @@
-import { moduleForModel, test } from 'ember-qunit';
+import { moduleFor, test } from 'ember-qunit';
+import Ember from 'ember';
+import DS from 'ember-data';
 
-moduleForModel('application', 'Unit | Serializer | application', {
+
+moduleFor('serializer:application', 'Unit | Serializer | application', {
   // Specify the other units that are required for this test.
-  needs: ['serializer:application']
 });
 
-// Replace this with your real tests.
+// TODO: Re-activate this once switched over to JSONAPI[Adapter|Serializer]
+//test('it serializes records in JSON Api format', function(assert) {
 test('it serializes records', function(assert) {
-  let record = this.subject();
 
-  let serializedRecord = record.serialize();
+  // create a dummy model for application
+  let DummyModel = DS.Model.extend({
+    name:    DS.attr('string'),
+    address: DS.attr('string')
+  });
+  this.registry.register('model:application', DummyModel);
 
-  assert.ok(serializedRecord);
+  let store = Ember.getOwner(this).lookup('service:store');
+
+  let basicModel = {
+    name:    'Test Name',
+    address: 'SOme Dummy Address'
+  };
+
+  let JsonApiHash = {
+    data: {
+      attributes: {
+        name:    basicModel.name,
+        address: basicModel.address
+      },
+      type: 'applications'
+    }
+  };
+  let expectedHash = JsonApiHash.data.attributes;
+
+  Ember.run(function(){
+
+    // Create an instance of DummyModel and serialize
+    let serializedRecord = store.createRecord('application', basicModel).serialize();
+    assert.deepEqual(serializedRecord, expectedHash);
+
+  });
+
 });
