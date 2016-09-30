@@ -6,6 +6,7 @@ export default Ember.Route.extend({
       var user = this.store.createRecord('user', {
         name : this.controller.get('name')
       });
+      // FIXME: user.save fails, despite putting a record in the nedb file
       user.save().then(() => {
         console.log('save successful');
         this.controller.set('message','A new user with the name "' +

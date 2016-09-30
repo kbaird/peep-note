@@ -7,9 +7,7 @@ moduleFor('serializer:application', 'Unit | Serializer | application', {
   // Specify the other units that are required for this test.
 });
 
-// TODO: Re-activate this once switched over to JSONAPI[Adapter|Serializer]
-//test('it serializes records in JSON Api format', function(assert) {
-test('it serializes records', function(assert) {
+test('it serializes records in JSON Api format', function(assert) {
 
   // create a dummy model for application
   let DummyModel = DS.Model.extend({
@@ -34,7 +32,7 @@ test('it serializes records', function(assert) {
       type: 'applications'
     }
   };
-  let expectedHash = JsonApiHash.data.attributes;
+  let expectedHash = JsonApiHash;
 
   Ember.run(function(){
 

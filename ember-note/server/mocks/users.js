@@ -13,18 +13,23 @@ module.exports = function(app) {
 
   // The POST URL is used to create a new record
   usersRouter.post('/', function(req, res) {
+    var data = req.body.data;
+    //console.log("data = " + JSON.stringify(data));
+    var user = data.attributes;
+    //console.log("user = " + JSON.stringify(user));
 
     // Look for the most recently created record and use it to set the id
     // field of our incoming record, which is required by Ember Data
     userDB.find({}).sort({id : -1}).limit(1).exec(function(err, users) {
       if(users.length != 0)
-        req.body.user.id = users[0].id + 1;
+        user.id = users[0].id + 1;
       else
-        req.body.user.id = 1;
+        user.id = 1;
 
       // Insert the new record into our datastore, and return the newly
       // created record to Ember Data
-      userDB.insert(req.body.user, function(err, newUser) {
+      userDB.insert(user, function(err, newUser) {
+        //console.log("newUser = " + JSON.stringify(newUser));
         res.status(201);
         res.send(
           JSON.stringify(
@@ -77,5 +82,6 @@ module.exports = function(app) {
   // this mock uncommenting the following line:
   //
   //app.use('/api/users', require('body-parser').json());
-  app.use('/api/users', usersRouter);
+  app.use('/api/users', require('body-parser').json({ type: 'application/vnd.api+json' }), usersRouter);
+  //app.use('/api/users', usersRouter);
 };
