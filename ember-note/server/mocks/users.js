@@ -1,4 +1,10 @@
 /*jshint node:true*/
+
+/*
+  NOTE: http://www.per-aspera.eu/tutorial-ember-2-http-mock-for-json-api-adapter
+  was very helpful
+*/
+
 module.exports = function(app) {
   var express = require('express');
   var usersRouter = express.Router();
