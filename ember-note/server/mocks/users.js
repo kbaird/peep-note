@@ -35,7 +35,6 @@ module.exports = function(app) {
       // Insert the new record into our datastore, and return the newly
       // created record to Ember Data
       userDB.insert(user, function(err, newUser) {
-        newUser.type = 'user';
         res.status(201);
         res.send(
           JSON.stringify(
@@ -90,4 +89,5 @@ module.exports = function(app) {
   //
   //app.use('/api/users', require('body-parser').json());
   app.use('/api/users', require('body-parser').json({ type: 'application/vnd.api+json' }), usersRouter);
+  //app.use('/api/users', usersRouter);
 };
