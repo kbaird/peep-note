@@ -1,3 +1,10 @@
+/*jshint node:true*/
+
+/*
+  NOTE: http://www.per-aspera.eu/tutorial-ember-2-http-mock-for-json-api-adapter
+  was very helpful
+*/
+
 module.exports = function(app) {
   var express = require('express');
   var notebooksRouter = express.Router();
@@ -52,5 +59,5 @@ module.exports = function(app) {
     res.status(204).end();
   });
 
-  app.use('/api/notebooks', notebooksRouter);
+  app.use('/api/notebooks', require('body-parser').json({ type: 'application/vnd.api+json' }), notebooksRouter);
 };
