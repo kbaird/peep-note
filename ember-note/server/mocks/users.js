@@ -89,5 +89,4 @@ module.exports = function(app) {
   //
   //app.use('/api/users', require('body-parser').json());
   app.use('/api/users', require('body-parser').json({ type: 'application/vnd.api+json' }), usersRouter);
-  //app.use('/api/users', usersRouter);
 };
