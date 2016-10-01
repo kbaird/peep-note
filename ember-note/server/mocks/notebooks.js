@@ -32,7 +32,6 @@ module.exports = function(app) {
         else
           notebook.id = 1;
         notebookDB.insert(notebook, function(err, newNotebook) {
-          newNotebook.type = 'notebook';
           res.status(201);
           res.send(
             JSON.stringify(
