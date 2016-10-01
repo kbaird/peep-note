@@ -16,7 +16,7 @@ module.exports = function(app) {
 
     // Look for the most recently created record and use it to set the id
     // field of our incoming record, which is required by Ember Data
-    userDB.find({}).sort({id : -1}).limit(1).exec(function(err,users) {
+    userDB.find({}).sort({id : -1}).limit(1).exec(function(err, users) {
       if(users.length != 0)
         req.body.user.id = users[0].id + 1;
       else
@@ -24,7 +24,7 @@ module.exports = function(app) {
 
       // Insert the new record into our datastore, and return the newly
       // created record to Ember Data
-      userDB.insert(req.body.user, function(err,newUser) {
+      userDB.insert(req.body.user, function(err, newUser) {
         res.status(201);
         res.send(
           JSON.stringify(
@@ -35,11 +35,11 @@ module.exports = function(app) {
     })
   });
 
-  // For now, we won't touch the rest of this code, which was created by
-  // Ember CLI
   usersRouter.get('/', function(req, res) {
-    res.send({
-      'users': []
+    userDB.find(req.query).exec(function(error, users) {
+      res.send({
+        'users': users
+      });
     });
   });
 
