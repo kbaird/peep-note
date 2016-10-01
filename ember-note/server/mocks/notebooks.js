@@ -4,7 +4,7 @@ module.exports = function(app) {
   var bodyParser = require('body-parser');
   app.use(bodyParser.json());
   var nedb = require('nedb');
-  var notebookDB = new nedb({ filename : 'notebooks', autoload: true});
+  var notebookDB = new nedb({ filename : 'notebooks.nedb', autoload: true});
 
   notebooksRouter.get('/', function(req, res) {
     notebookDB.find(req.query).exec(function(error, notebooks) {

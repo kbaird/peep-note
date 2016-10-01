@@ -9,10 +9,10 @@
 /bower_components
 
 # misc
+*.nedb
 /.sass-cache
 /connect.lock
 /coverage/*
 /libpeerconnection.log
 npm-debug.log
 testem.log
-users.nedb
