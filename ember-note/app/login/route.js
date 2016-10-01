@@ -13,7 +13,7 @@ export default Ember.Route.extend({
           this.transitionTo('notebooks', user.get('id'));
         }
         else {
-           console.log('unexpected query result');
+          console.log('unexpected query result');
         }
       });
     }
