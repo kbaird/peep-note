@@ -22,13 +22,15 @@ module.exports = function(app) {
   });
 
   notebooksRouter.post('/', function(req, res) {
+    var data     = req.body.data;
+    var notebook = data.attributes;
     notebookDB.find({}).sort({id : -1}).limit(1).exec(
       function(err, notebooks) {
         if(notebooks.length != 0)
-          req.body.notebook.id =  notebooks[0].id + 1;
+          notebook.id =  notebooks[0].id + 1;
         else
-          req.body.notebook.id = 1;
-        notebookDB.insert(req.body.notebook, function(err, newNotebook) {
+          notebook.id = 1;
+        notebookDB.insert(notebook, function(err, newNotebook) {
           res.status(201);
           res.send(
             JSON.stringify(
