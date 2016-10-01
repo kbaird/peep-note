@@ -31,7 +31,6 @@ module.exports = function(app) {
         else
           note.id = 1;
         noteDB.insert(note, function(err, newNote) {
-          newNote.type = 'note';
           res.status(201);
           res.send(
             JSON.stringify(
