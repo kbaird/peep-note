@@ -48,8 +48,9 @@ module.exports = function(app) {
 
   usersRouter.get('/', function(req, res) {
     userDB.find(req.query).exec(function(error, users) {
+      users.forEach(u => u.type = 'user');
       res.send({
-        'users': users
+        'data': users
       });
     });
   });

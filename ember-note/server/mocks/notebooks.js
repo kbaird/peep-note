@@ -15,8 +15,9 @@ module.exports = function(app) {
 
   notebooksRouter.get('/', function(req, res) {
     notebookDB.find(req.query).exec(function(error, notebooks) {
+      notebooks.forEach(u => u.type = 'notebook');
       res.send({
-        'notebooks': notebooks
+        'data': notebooks
       });
     });
   });
