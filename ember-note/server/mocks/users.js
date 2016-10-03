@@ -35,12 +35,12 @@ module.exports = function(app) {
       // Insert the new record into our datastore, and return the newly
       // created record to Ember Data
       userDB.insert(user, function(err, newUser) {
-        //console.log("newUser = " + JSON.stringify(newUser));
+        newUser.type = 'user';
         res.status(201);
         res.send(
           JSON.stringify(
           {
-            user : newUser
+            data : newUser
           }));
       });
     })
