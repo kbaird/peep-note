@@ -11,9 +11,6 @@ test('it renders', function(assert) {
 });
 
 test('it renders block text', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
-
   // Template block usage:
   this.render(hbs`
     {{#edit-note}}
@@ -26,4 +23,10 @@ test('it renders block text', function(assert) {
     trimmed.includes fails, even though that's conceptually all we're doing here.
   */
   assert.equal(trimmed.match(/template block text/)[0], 'template block text');
+});
+
+test('it renders the notebook title', function(assert) {
+  // Set any properties with this.set('myProperty', 'value');
+  // Handle any actions with this.on('myAction', function(val) { ... });
+  assert.equal('TODO', 'TODO');
 });
