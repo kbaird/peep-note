@@ -20,7 +20,7 @@ test('it renders', function(assert) {
     {{/edit-note}}
   `);
 
-  var trimmed = this.$().text().trim;
+  var trimmed = this.$().text().trim();
   /* FIXME: This is ugly.
     trimmed.includes fails, even though that's conceptually all we're doing here.
   */
