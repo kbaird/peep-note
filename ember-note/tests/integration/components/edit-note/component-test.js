@@ -11,7 +11,7 @@ test('it renders', function(assert) {
 
   this.render(hbs`{{edit-note}}`);
 
-  assert.equal(this.$().text().trim(), '');
+  assert.equal(this.$().text().trim(), 'save\n  close');
 
   // Template block usage:
   this.render(hbs`
@@ -20,5 +20,9 @@ test('it renders', function(assert) {
     {{/edit-note}}
   `);
 
-  assert.equal(this.$().text().trim(), 'template block text');
+  var trimmed = this.$().text().trim;
+  /* FIXME: This is ugly.
+    trimmed.includes fails, even though that's conceptually all we're doing here.
+  */
+  assert.equal(trimmed.match(/template block text/)[0], 'template block text');
 });
