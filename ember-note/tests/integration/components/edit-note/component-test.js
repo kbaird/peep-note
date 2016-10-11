@@ -6,12 +6,13 @@ moduleForComponent('edit-note', 'Integration | Component | edit note', {
 });
 
 test('it renders', function(assert) {
+  this.render(hbs`{{edit-note}}`);
+  assert.equal(this.$().text().trim(), 'save\n  close');
+});
+
+test('it renders block text', function(assert) {
   // Set any properties with this.set('myProperty', 'value');
   // Handle any actions with this.on('myAction', function(val) { ... });
-
-  this.render(hbs`{{edit-note}}`);
-
-  assert.equal(this.$().text().trim(), 'save\n  close');
 
   // Template block usage:
   this.render(hbs`
