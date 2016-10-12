@@ -4,7 +4,7 @@ module.exports = function(app) {
   var bodyParser = require('body-parser');
   app.use(bodyParser.json());
   var nedb = require('nedb');
-  var notebookDB = new nedb({ filename : 'notebooks.nedb', autoload: true});
+  var notebookDB = new nedb({ filename : 'notebooks-alt-api.nedb', autoload: true});
 
   notebooksRouter.get('/', function(req, res) {
     notebookDB.find(req.query).exec(function(error, notebooks) {
@@ -52,5 +52,5 @@ module.exports = function(app) {
     res.status(204).end();
   });
 
-  app.use('/api/notebooks', notebooksRouter);
+  app.use('/api/alt/notebooks', notebooksRouter);
 };

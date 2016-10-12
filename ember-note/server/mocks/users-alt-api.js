@@ -9,7 +9,7 @@ module.exports = function(app) {
 
   // Create an embedded table using NEDB if it doesn't yet exist
   var nedb = require('nedb');
-  var userDB = new nedb({ filename : 'users.nedb', autoload: true});
+  var userDB = new nedb({ filename : 'users-alt-api.nedb', autoload: true});
 
   // The POST URL is used to create a new record
   usersRouter.post('/', function(req, res) {
@@ -77,5 +77,5 @@ module.exports = function(app) {
   // this mock uncommenting the following line:
   //
   //app.use('/api/users', require('body-parser').json());
-  app.use('/api/users', usersRouter);
+  app.use('/api/alt/users', usersRouter);
 };
