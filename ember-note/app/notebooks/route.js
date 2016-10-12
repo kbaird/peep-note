@@ -6,7 +6,7 @@ export default Ember.Route.extend({
   },
   actions: {
     addNotebook: function() {
-      console.log('addNotebook, user = ' + JSON.stringify(this.controllerFor('application').get('user')));
+      //console.log('addNotebook, user = ' + JSON.stringify(this.controllerFor('application').get('user')));
       var notebook = this.store.createRecord('notebook', {
         title: this.controller.get('title'),
         user: this.controllerFor('application').get('user')
